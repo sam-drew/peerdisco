@@ -1,2 +1,2 @@
-# peerdisco
+# Peer Disco
 A peer discovery server.
