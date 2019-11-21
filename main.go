@@ -18,8 +18,8 @@ type config struct {
 // Check if all peers are still alive
 func checkAlive(peers *map[string]bool, aliveCheckDuration time.Duration, c config) {
     var aliveCount int
-    aliveCount = len(*peers)
     for {
+        aliveCount = len(*peers)
         fmt.Printf("\nChecking if (%v) peers are alive\n", aliveCount)
         for ip := range *peers {
             resp, err := http.Get("http://" + ip + ":" + strconv.FormatInt(c.PeerPort, 10))
@@ -47,7 +47,7 @@ func main() {
     // TODO: Get config from file
     var c config
     c.PeerPort = 6666
-    c.AliveCheckInterval = 600
+    c.AliveCheckInterval = 60
 
     formattedAliveCheckInterval := (strconv.FormatInt(c.AliveCheckInterval, 10)+ "s")
     aliveCheckDuration, _ := time.ParseDuration(formattedAliveCheckInterval)
